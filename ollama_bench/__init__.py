@@ -138,8 +138,8 @@ def main() -> None:
             print(f"Cleaning up {prev_model} from memory...")
             try:
                 ollama.generate(model=prev_model, prompt="", keep_alive=0)
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Cleanup warning: {e}")
 
         # --- WARMUP PHASE ---
         print(f"\n{'=' * 60}")

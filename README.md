@@ -13,7 +13,7 @@ A lightweight, high-performance benchmarking tool for local LLMs running via [Ol
 
 *   **Interactive TUI Selection:** Use a beautiful checkbox interface (via `questionary`) to select multiple models from your Ollama library without typing them manually.
 *   **Memory-Awareness (The Fairness Protocol):** Automatically unloads previous models using the `keep_alive=0` parameter between runs. This prevents "memory contention" where an old model stays in RAM and slows down the next benchmark.
-*   **Dual-Phase Performance Metrics:** Evaluates two critical stages of inference: 
+*   **Dual-Phase Performance Metrics:** Evaluates two critical stages of inference:
     *   **Prompt Ingestion (Reader):** How fast the model processes existing context.
     *   **Token Generation (Writer):** How fast the model generates new tokens.
 *   **Modern Python Workflow:** No need for `pip install` or manual virtual environment setup—just use `uv`.
