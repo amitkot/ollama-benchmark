@@ -94,7 +94,9 @@ def run_benchmark(model_name: str, task_type: str, prompt: str) -> dict[str, Any
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Ollama Model Benchmark Tool (Interactive + Cleanup)")
+    parser = argparse.ArgumentParser(
+        description="Ollama Model Benchmark Tool (Interactive + Cleanup)"
+    )
     parser.add_argument("--models", nargs="+", help="List of models to test")
     args = parser.parse_args()
 
@@ -124,7 +126,9 @@ def main() -> None:
 
     results = []
     reader_prompt = "Explain the importance of self-attention in Transformers in one sentence."
-    writer_prompt = "Write a detailed technical summary of the history of LLMs (at least 300 tokens)."
+    writer_prompt = (
+        "Write a detailed technical summary of the history of LLMs (at least 300 tokens)."
+    )
 
     print(f"\nStarting Benchmark Session: {time.strftime('%Y-%m-%d %H:%M:%S')}")
     print("Unloading previous models between runs to ensure memory fairness...")
