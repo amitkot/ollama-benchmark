@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ollama-ml-benchmarker"
+name = "ollama-benchmark"
 version = "0.1.0"
 description = "A professional benchmarking tool for local Ollama models."
 authors = [
@@ -19,5 +19,6 @@ dependencies = [
 [project.scripts]
 ollama-benchmark = "ollama_bench:main"
 
-[tool.hatch.build.hooks.custom]
-# This is just a placeholder for build configuration if needed
+[tool.hatch.build.targets.wheel]
+packages = ["ollama_bench"]
+

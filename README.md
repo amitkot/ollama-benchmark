@@ -1,4 +1,4 @@
-# Ollama ML Benchmarker
+# Ollama Benchmark
 
 A lightweight, high-performance benchmarking tool for local LLMs running via [Ollama](https://ollama.com/). Designed specifically for macOS and Linux users who want to measure the true performance of their hardware with "Scientific Fairness."
 
@@ -9,19 +9,26 @@ A lightweight, high-performance benchmarking tool for local LLMs running via [Ol
 *   **Dual-Phase Performance Metrics:** Evaluates two critical stages of inference: 
     *   **Prompt Ingestion (Reader):** How fast the model processes existing context.
     *   **Token Generation (Writer):** How fast the model generates new tokens.
-*   **Modern Python Workflow:** Uses **PEP 723** inline dependency metadata. No need for `pip install` or manual virtual environment setup—just use `uv`.
+*   **Modern Python Workflow:** No need for `pip install` or manual virtual environment setup—just use `uv`.
 
 ## 🛠️ Prerequisites
 
 1.  **[Ollama](https://ollama.com/):** Must be installed and running as a background service.
 2.  **[uv](https://astral.sh/uv):** The fast Python package manager. [Installation guide here](https://astral.sh/uv/).
 
-## 📦 Installation
+## 🚀 Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/ollama-ml-benchmarker.git
-cd ollama-ml-benchmarker
+uvx --from git+https://github.com/amitkot/ollama-benchmark ollama-benchmark
+```
+
+No cloning, no installing — just run.
+
+## 📦 Installation (optional)
+
+```bash
+git clone https://github.com/amitkot/ollama-benchmark.git
+cd ollama-benchmark
 ```
 
 ## 🚀 Usage
@@ -32,7 +39,7 @@ The tool offers two modes of operation:
 If you don't provide any arguments, the tool will fetch your local Ollama models and present an interactive checkbox menu.
 
 ```bash
-uv run benchmark.py
+uv run ollama-benchmark
 ```
 
 ### 2. Direct/Scripted Mode
@@ -40,10 +47,10 @@ Pass specific model names directly for quick testing or CI/CD automation.
 
 ```bash
 # Using a space-separated list
-uv run benchmark.py --models gemma4:12b-it phi4
+uv run ollama-benchmark --models gemma4:12b-it phi4
 
 # Using a quoted string (handles spaces automatically)
-uv run benchmark.py --models "gemma4:26b-mlx phi4"
+uv run ollama-benchmark --models "gemma4:26b-mlx phi4"
 ```
 
 ## 📊 Sample Output
