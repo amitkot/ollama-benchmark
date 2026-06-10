@@ -1,5 +1,12 @@
 # Ollama Benchmark
 
+[![CI](https://github.com/amitkot/ollama-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/amitkot/ollama-benchmark/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+[![License](https://img.shields.io/github/license/amitkot/ollama-benchmark)](LICENSE)
+![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)
+![Types: ty](https://img.shields.io/badge/types-ty-purple)
+![Package manager: uv](https://img.shields.io/badge/package%20manager-uv-blueviolet)
+
 A lightweight, high-performance benchmarking tool for local LLMs running via [Ollama](https://ollama.com/). Designed specifically for macOS and Linux users who want to measure the true performance of their hardware with "Scientific Fairness."
 
 ## 🚀 Features
