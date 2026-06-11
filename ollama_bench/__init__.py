@@ -138,10 +138,10 @@ def main() -> None:
     for i, model in enumerate(target_models):
         # --- CLEANUP PHASE ---
         if i > 0:
-            prev_model = results[i - 1]["model"]
+            prev_model = str(results[i - 1]["model"])
             print(f"Cleaning up {prev_model} from memory...")
             try:
-                ollama.generate(model=prev_model, prompt="", keep_alive=0)
+                ollama.generate(model=prev_model, prompt="", stream=False, keep_alive=0.0)
             except Exception as e:
                 print(f"Cleanup warning: {e}")
 
@@ -153,7 +153,7 @@ def main() -> None:
         print("Warming up (Loading model into memory)...")
         t_start = time.time()
         try:
-            ollama.generate(model=model, prompt="warmup", keep_alive=-1)
+            ollama.generate(model=model, prompt="warmup", stream=False, keep_alive=-1.0)
             load_duration: Union[float, str] = round(time.time() - t_start, 2)
         except Exception as e:
             print(f"Warmup failed: {e}")
@@ -180,22 +180,24 @@ def main() -> None:
     print("-" * 60)
 
     for r in results:
-        model = r["model"]
-        reader = r["reader"]
-        if "error" in reader or not isinstance(reader, dict):
+        model: str = str(r["model"])
+        reader_raw = r["reader"]
+        if not isinstance(reader_raw, dict) or "error" in reader_raw:
             print(f"| {model[:25]:<25} | ERROR      | -       | -       | -      |")
             continue
 
         # Reader Output
+        reader: dict[str, Any] = reader_raw
         p_tps = reader.get("prompt_tps", "-")
         o_toks = reader.get("output_tokens", "-")
         print(f"{model[:25]:<25} | READER    | {p_tps:<7} | {'-':<7} | {o_toks:<6}")
 
         # Writer Output
-        writer = r["writer"]
-        if "error" in writer:
+        writer_raw = r["writer"]
+        if not isinstance(writer_raw, dict) or "error" in writer_raw:
             print(f"{'':<25} | ERROR      | -       | -       | -      |")
         else:
+            writer: dict[str, Any] = writer_raw
             d_tps = writer.get("decode_tps", "-")
             w_toks = writer.get("output_tokens", "-")
             print(f"{'':<25} | WRITER    | {'-':<7} | {d_tps:<7} | {w_toks:<6}")
@@ -205,7 +207,7 @@ def main() -> None:
     load_times = []
     for r in results:
         lt = r["load_time"]
-        name = r["model"][:12]
+        name = str(r["model"])[:12]
         load_times.append(f"{name}: {lt}s")
     print("Load Times (Warmup): " + ", ".join(load_times))
 
