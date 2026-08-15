@@ -15,3 +15,5 @@ ENV/
 dist/
 build/
 *.egg-info/
+.ruff_cache/
+.pytest_cache/
